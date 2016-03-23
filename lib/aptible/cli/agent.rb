@@ -55,7 +55,9 @@ module Aptible
 
         begin
           token = Aptible::Auth::Token.create(email: email, password: password)
-        rescue OAuth2::Error
+        rescue OAuth2::Error => e
+          $stderr.puts e.message
+          $stderr.puts e.backtrace.join("\n")
           raise Thor::Error, 'Could not authenticate with given credentials'
         end
 
