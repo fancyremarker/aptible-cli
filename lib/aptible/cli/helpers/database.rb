@@ -53,6 +53,8 @@ module Aptible
 
           tunnel_args = "-L #{local_port}:localhost:#{remote_port}"
           command = "ssh #{tunnel_args} #{common_ssh_args(database)}"
+          $stderr.puts "tunnel_args: #{tunnel_args.inspect}"
+          $stderr.puts "command: #{command.inspect}"
           Kernel.exec(command)
         end
 
